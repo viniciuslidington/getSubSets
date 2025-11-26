@@ -1,49 +1,37 @@
 # SubSet question - Encora - Estagio
+from mySetClass import MySet
 
-class MySet:
-    def __init__(self):
-        self.data = []  # lista interna para armazenar elementos sem repetição
+def mask_to_subset(mask, elements):
+    subset = MySet()
+    n = len(elements)
 
-    def add(self, element):
-        if element not in self.data:
-            self.data.append(element)
-            return True
-        return False
+    for i in range(n):
+        if mask & (1 << i):  # se o bit i está ligado
+            subset.add(elements[i])
 
-    def addAll(self, other_set):
-        changed = False
-        for element in other_set.data:
-            if self.add(element):
-                changed = True
-        return changed
+    return subset
 
-    def contains(self, element):
-        return element in self.data
 
-    def equals(self, other_set):
-        if self.size() != other_set.size():
-            return False
-        for e in self.data:
-            if not other_set.contains(e):
-                return False
-        return True
+# ============================================================
+# 3) Função auxiliar: gera todos os subsets possíveis
+# ============================================================
 
-    def iterator(self):
-        return iter(self.data)
+def generate_all_subsets(elements):
+    result = MySet()
+    n = len(elements)
+    total_masks = 1 << n  # 2^n
 
-    def remove(self, element):
-        if element in self.data:
-            self.data.remove(element)
-            return True
-        return False
+    for mask in range(total_masks):
+        subset = mask_to_subset(mask, elements)
+        result.add(subset)
 
-    def size(self):
-        return len(self.data)
+    return result
 
-    def toArray(self):
-        return list(self.data)
 
-    def __repr__(self):
-        if self.size() == 0:
-            return "{}"
-        return "{" + ", ".join(str(e) for e in self.data) + "}"
+# ============================================================
+# 4) Função PRINCIPAL getSubSets(A)
+# ============================================================
+
+def getSubSets(A):
+    elements = A.toArray()
+    return generate_all_subsets(elements)
