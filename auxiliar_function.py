@@ -1,7 +1,6 @@
 #funcoes auxiliares para o código
 from my_set_class import MySet
 
-
 def mask_to_subset(mask, elements):
     subset = MySet()
     n = len(elements)

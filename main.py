@@ -1,6 +1,7 @@
 # SubSet question - Encora - Estagio
 from my_set_class import MySet
 from auxiliar_function import getSubSets 
+import sys
 
 def main():
 
@@ -18,8 +19,13 @@ def main():
         # Tenta converter para número se possível
         try:
             valor = int(valor)
-        except:
-            pass  # mantém como string se não for número
+
+        except ValueError:
+            # Entrada inválida (não numérica e não 'fim'): encerrar o programa
+            print("ERRO")
+            print("Entrada inválida: digite somente números ou 'fim' para encerrar.")
+            print("Encerrando o programa. Execute novamente para tentar outra vez.")
+            sys.exit(1)
 
         A.add(valor)
 
