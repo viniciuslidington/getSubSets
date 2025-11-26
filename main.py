@@ -4,6 +4,30 @@ from auxiliar_function import getSubSets
 import sys
 
 def main():
+    """
+    Função principal do programa de geração de subconjuntos.
+    
+    Fluxo do programa:
+    1. Solicita ao usuário que digite os elementos do conjunto A (apenas números inteiros).
+    2. Permite entrada contínua até que o usuário digite 'fim'.
+    3. Valida cada entrada:
+       - Se for 'fim': encerra a entrada e prossegue para gerar subconjuntos.
+       - Se for número: adiciona ao conjunto A.
+       - Se for palavra inválida: encerra o programa com mensagem de erro.
+    4. Gera todos os subconjuntos possíveis do conjunto A.
+    5. Exibe cada subconjunto e o total de subconjuntos gerados.
+    
+    Comportamento de erro:
+        Se o usuário digitar uma palavra que não é número nem 'fim',
+        o programa encerra imediatamente com código de saída 1.
+    
+    Exemplos:
+        Entrada válida: 1, 2, 3, fim
+        Saída: todos os subconjuntos de {1, 2, 3}
+        
+        Entrada inválida: 1, abc
+        Saída: mensagem de erro e encerramento do programa
+    """
 
     A = MySet()
 
